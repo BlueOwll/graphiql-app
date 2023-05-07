@@ -7,10 +7,6 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "airbnb",
-        "airbnb-typescript",
-        "plugin:import/typescript",
-        "prettier",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -23,9 +19,11 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint",
-        "prettier"
+        "@typescript-eslint"
+
     ],
     "rules": {
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
     }
 }
