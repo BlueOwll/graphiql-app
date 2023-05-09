@@ -6,5 +6,5 @@
 .base__container {
   max-width: var(--max-width-desktop);
   min-height: calc(100vh - var(--footer-height));
-  padding: 2vh 3vw;
+  /*padding: 2vh 3vw;*/
 }
