@@ -4,10 +4,15 @@ import graphql from '../../assets/graphql.svg';
 import rnm from '../../assets/rnm.svg';
 import { Button, MenuItem } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
+import * as React from 'react';
 
-const Header = () => {
+const Header = (props) => {
+
+  const [lang, setLang] = React.useState('en');
+
   const handleChangeLang = (e) => {
-    console.log(e.target.value);
+    props.changeLanguage(e.target.value);
+    setLang(e.target.value);
   };
 
   return (
@@ -19,13 +24,13 @@ const Header = () => {
       <div className={style.btnBlock}>
         <Select
           sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-          value={'ENG'}
+          value={lang}
           onChange={handleChangeLang}
         >
-          <MenuItem value={'RU'}>RU</MenuItem>
-          <MenuItem value={'ENG'}>ENG</MenuItem>
+          <MenuItem value={'ru'}>RU</MenuItem>
+          <MenuItem value={'en'}>ENG</MenuItem>
         </Select>
-        <Button  size="large" style={{color: 'black'}} endIcon={<LogoutIcon />}>Logout</Button>
+        <Button  size="large" style={{color: 'black'}} endIcon={<LogoutIcon />}>{props.t('logout')}</Button>
       </div>
     </header>
   );

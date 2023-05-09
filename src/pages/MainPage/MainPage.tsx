@@ -76,7 +76,7 @@ const MainPage = () => {
 
   return (
     <div className={style.mainPage}>
-      <Menu query={query} setQuery={setQuery} setResponse={setResponse}/>
+      <Menu query={query} setQuery={setQuery} setResponse={setResponse} />
       <div className={style.playBlock}>
         <div className={style.playgroundBlock}>
           <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column-reverse' }}>
