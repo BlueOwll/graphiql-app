@@ -28,9 +28,10 @@
 }
 
 .responseBlock {
-  width: 40vw;
-  height: 70vh;
+  width: 37vw;
+  height: 65vh;
   padding: 24px;
+  overflow-y: scroll;
 }
 
 .tabPanel {

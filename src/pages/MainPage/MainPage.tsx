@@ -1,4 +1,5 @@
 import * as React from 'react';
+import JsonFormatter from 'react-json-formatter';
 import style from './MainPage.module.scss';
 import Menu from '../../components/Menu/Menu';
 import Tabs from '@mui/material/Tabs';
@@ -6,6 +7,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Playground from '../../components/Playground/Playground';
+import { useState } from 'react';
 
 const MainPage = () => {
   interface TabPanelProps {
@@ -13,6 +15,31 @@ const MainPage = () => {
     index: number;
     value: number;
   }
+
+  const jsonStyle = {
+    propertyStyle: { color: 'red' },
+    stringStyle: { color: 'green' },
+    numberStyle: { color: 'darkorange' }
+  }
+
+  const [query, setQuery] = useState(`{
+  characters(page: 2, filter: {name: "rick"}) {
+    info {
+      count
+    }
+    results {
+      name
+    }
+  }
+  location(id: 1) {
+    id
+  }
+  episodesByIds(ids: [1, 2]) {
+    id
+  }
+}`);
+
+  const [response, setResponse] = useState(null);
 
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -49,7 +76,7 @@ const MainPage = () => {
 
   return (
     <div className={style.mainPage}>
-      <Menu />
+      <Menu query={query} setQuery={setQuery} setResponse={setResponse}/>
       <div className={style.playBlock}>
         <div className={style.playgroundBlock}>
           <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column-reverse' }}>
@@ -61,7 +88,7 @@ const MainPage = () => {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0} className={style.tabPanel} >
-              <Playground />
+              <Playground query={query} setQuery={setQuery}/>
             </TabPanel>
             <TabPanel value={value} index={1} className={style.tabPanel} >
               Variables
@@ -71,7 +98,10 @@ const MainPage = () => {
             </TabPanel>
           </Box>
         </div>
-        <div className={style.responseBlock}>111</div>
+        <div className={style.responseBlock}>
+          {response ? <JsonFormatter json={response} tabWith={4} jsonStyle={jsonStyle} /> :
+            <div></div>}
+        </div>
       </div>
     </div>
   );
