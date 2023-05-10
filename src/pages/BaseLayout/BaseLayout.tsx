@@ -5,12 +5,12 @@ import './BaseLayout.css';
 
 const BaseLayout = (props) => {
   return (
-    <div className='layout'>
-      <Header changeLanguage={props.changeLanguage} t={props.t}/>
-      <main className='base__container'>
+    <div className="layout">
+      <Header changeLanguage={props.changeLanguage} t={props.t} />
+      <main className="base__container">
         <Outlet />
       </main>
-      <Footer />
+      <Footer t={props.t} />
     </div>
   );
 };
