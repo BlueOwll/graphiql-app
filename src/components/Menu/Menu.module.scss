@@ -1,10 +1,7 @@
-footer {
-  height: var(--footer-height);
+.menu {
   background: lightgray;
   width: 80vw;
   outline: 1px solid darkgray;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 5px;
 }

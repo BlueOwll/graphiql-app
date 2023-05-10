@@ -3,12 +3,21 @@ import { BaseLayout } from './pages/BaseLayout/BaseLayout';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import MainPage from './pages/MainPage/MainPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { useTranslation } from 'react-i18next';
 import RequireAuth from './hocs/RequireAuth';
 
 function App() {
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    console.log('changeLanguage');
+  };
+
   return (
     <Routes>
-      <Route path="/" element={<BaseLayout />}>
+      <Route path='/' element={<BaseLayout changeLanguage={changeLanguage} t={t}/>}>
         <Route index element={<WelcomePage />} />
 
         <Route
@@ -21,8 +30,8 @@ function App() {
         />
 
         {/* <Route path="login" element={<LoginPage />} /> */}
-        <Route path="404" element={<NotFoundPage />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
+        <Route path='404' element={<NotFoundPage />} />
+        <Route path='*' element={<Navigate to='/404' replace />} />
       </Route>
     </Routes>
   );

@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './hocs/AuthProvider.tsx';
+import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
+    <Suspense fallback={<div>Loading languages...</div>}>
+      <BrowserRouter>
         <App />
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Suspense>
   </React.StrictMode>,
 );

@@ -1,0 +1,39 @@
+.mainPage {
+  background: lightgray;
+  width: 80vw;
+  height: 80vh;
+  outline: 1px solid darkgray;
+  display: flex;
+  margin-top: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 5px;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.box {
+  display: flex;
+}
+
+.playBlock {
+  display: flex;
+}
+
+.playgroundBlock {
+  width: 40vw;
+  height: 70vh;
+}
+
+.responseBlock {
+  width: 37vw;
+  height: 65vh;
+  padding: 24px;
+  overflow-y: scroll;
+}
+
+.tabPanel {
+  height: 68vh;
+}
