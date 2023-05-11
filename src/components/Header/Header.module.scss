@@ -1,6 +1,5 @@
 .header {
   background: lightgray;
-  width: 80vw;
   outline: 1px solid darkgray;
   display: flex;
   align-items: center;
@@ -16,4 +15,7 @@
 .iconBlock, .btnBlock {
   display: flex;
   align-items: center;
+  justify-content: end;
+  width: 150px;
+  padding: 10px;
 }
