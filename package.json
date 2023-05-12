@@ -22,20 +22,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
-    "react-router-dom": "^6.11.1"
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.3",
-    "@mui/styled-engine-sc": "^5.12.0",
-    "i18next": "^22.4.15",
-    "i18next-browser-languagedetector": "^7.0.1",
-    "i18next-http-backend": "^2.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
     "react-i18next": "^12.2.2",
     "react-json-formatter": "^0.3.2",
-    "react-router-dom": "^6.11.1",
     "styled-components": "^5.3.10"
   },
   "devDependencies": {

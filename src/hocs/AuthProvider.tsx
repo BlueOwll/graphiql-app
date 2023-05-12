@@ -4,7 +4,7 @@ import {
   signOut,
   User,
 } from '@firebase/auth';
-import { createContext, PropsWithChildren } from 'react';
+import { createContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../storage/firebase';
 
@@ -16,6 +16,8 @@ interface AuthProviderValue {
   signin: SigninFunction;
   signup: SigninFunction;
   signout: SignoutFunction;
+  error?: Error;
+  loading: boolean;
 }
 type AuthProviderProps = {
   children?: React.ReactNode;
@@ -50,6 +52,7 @@ export const AuthContext = createContext<AuthProviderValue>({
   signin,
   signup,
   signout,
+  loading: false,
 });
 
 export const AuthProvider = (props: AuthProviderProps) => {
@@ -59,12 +62,12 @@ export const AuthProvider = (props: AuthProviderProps) => {
 
   const value = {
     user,
+    loading,
+    error,
+    signin,
+    signup,
+    signout,
   } as AuthProviderValue;
-  return (
-    <AuthContext.Provider value={value}>
-      {loading && <div>Loading auth..</div>}
-      {!loading && !!props.children && props.children}
-      {!!error && <div>Error {error.message}</div>}
-    </AuthContext.Provider>
-  );
+  console.log(value);
+  return <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>;
 };
