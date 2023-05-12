@@ -1,0 +1,25 @@
+footer {
+  position: relative;
+  height: var(--footer-height);
+  background: lightgray;
+  width: 80vw;
+  outline: 1px solid darkgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.gitContainer {
+  height: 100%;
+  width: 60px;
+  display: flex;
+}
+.iconBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 72px;
+}
+.imgBlock {
+  display: block;
+}

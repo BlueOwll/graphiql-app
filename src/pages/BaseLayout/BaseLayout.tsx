@@ -16,7 +16,7 @@ const BaseLayout = (props: BaseLayoutProps) => {
       <main className={style.base__container}>
         <Outlet />
       </main>
-      <Footer />
+      <Footer t={props.t} />
     </div>
   );
 };
