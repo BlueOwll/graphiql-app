@@ -8,8 +8,16 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+  const { user } = useAuth();
+  const history = useNavigate();
+
+  React.useEffect(() => {
+    if (!user) history('/');
+  }, [user]);
   interface TabPanelProps {
     children?: React.ReactNode;
     index: number;

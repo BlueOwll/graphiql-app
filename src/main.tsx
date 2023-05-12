@@ -7,6 +7,7 @@ import './i18n';
 import { AuthProvider } from './hocs/AuthProvider.tsx';
 import themeLight from './themes/theme-light.ts';
 import { ThemeProvider } from '@emotion/react';
+import { CssBaseline } from '@mui/material';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <AuthProvider>
         <BrowserRouter>
           <ThemeProvider theme={themeLight}>
+            <CssBaseline />
             <App />
           </ThemeProvider>
         </BrowserRouter>

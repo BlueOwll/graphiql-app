@@ -25,7 +25,8 @@ type AuthProviderProps = {
 
 const signin: SigninFunction = async (email, password) => {
   try {
-    signInWithEmailAndPassword(auth, email, password);
+    console.log(`dm ${email} ps ${password}`);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
     throw new Error(`Auth error ${(e as Error).message}`);
   }
@@ -33,7 +34,7 @@ const signin: SigninFunction = async (email, password) => {
 
 const signup: SigninFunction = async (email, password) => {
   try {
-    createUserWithEmailAndPassword(auth, email, password);
+    await createUserWithEmailAndPassword(auth, email, password);
   } catch (e) {
     throw new Error(`Auth error ${(e as Error).message}`);
   }
