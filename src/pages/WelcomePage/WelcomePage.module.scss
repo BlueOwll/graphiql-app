@@ -1,14 +1,13 @@
 .welcomePage {
   background: lightgray;
   width: 80vw;
-  height: 80vh;
-  outline: 1px solid darkgray;
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+
   display: flex;
-  margin-top: 5px;
+  padding-top: 5px;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 5px;
   flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -19,24 +18,15 @@
 .firstSection {
   display: flex;
   justify-content: space-around;
-  height: calc(33.33% - 20px);
+  height: calc(30%);
   background-color: lightgray;
 }
 
-.secondSection {
+.secondSection, .thirdSection {
   width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(33.33% - 20px);
-  align-self: center;
-}
-
-.thirdSection {
-  width: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(33.33% - 20px);
+  height: calc(30% - 20px);
   align-self: center;
 }

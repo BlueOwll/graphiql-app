@@ -6,7 +6,6 @@ import SignIn from './pages/SignInPage/SignInPage';
 import SignUp from './pages/SignInPage/SignUp';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { useTranslation } from 'react-i18next';
-import RequireAuth from './hocs/RequireAuth';
 
 function App() {
   const { t, i18n } = useTranslation();

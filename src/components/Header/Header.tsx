@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Language, Logout } from '@mui/icons-material';
 import useAuth from '../../hooks/useAuth';
 import { TFunction } from 'i18next';
+import { Link } from 'react-router-dom';
 
 type HeaderProps = {
   changeLanguage: (lang?: string) => void;
@@ -25,7 +26,9 @@ const Header = (props: HeaderProps) => {
   return (
     <header className={style.header}>
       <div className={style.iconBlock}>
-        <img src={graphql} />
+        <Link to="/">
+          <img src={graphql} />
+        </Link>
         <a href="https://rickandmortyapi.com/graphql" target="_blank" rel="noreferrer">
           <img className={style.icon} src={rnm} />
         </a>

@@ -4,14 +4,13 @@ import { Button, CircularProgress } from '@mui/material';
 import 'firebase/auth';
 import useAuth from '../../hooks/useAuth';
 import { TFunction } from 'i18next';
-import themeLight from '../../themes/theme-light';
 
 type WelcomePageProps = {
   t: TFunction<'translation', undefined, 'translation'>;
 };
 
 const WelcomePage = (props: WelcomePageProps) => {
-  const { user, loading, error } = useAuth();
+  const { user, loading } = useAuth();
 
   return (
     <div className={style.welcomePage}>
@@ -33,27 +32,20 @@ const WelcomePage = (props: WelcomePageProps) => {
               </Button>
             </Link>
           ) : (
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                paddingInline: '2vw',
+                paddingBlock: '10px',
+                gap: '2vw',
+              }}
+            >
               <Link to="/signIn">
-                <Button
-                  variant="contained"
-                  sx={{
-                    color: 'white',
-                    margin: '10px',
-                  }}
-                >
-                  {props.t('sign in')}
-                </Button>
+                <Button variant="contained">{props.t('sign in')}</Button>
               </Link>
               <Link to="/signUp">
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  sx={{
-                    color: 'white',
-                    margin: '10px',
-                  }}
-                >
+                <Button variant="contained" color="secondary">
                   {props.t('sign up')}
                 </Button>
               </Link>

@@ -4,10 +4,12 @@ const themeLight = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#aab8d4',
+      main: '#1976d2',
+      contrastText: '#ffffff',
     },
     secondary: {
       main: '#2dc8ff',
+      contrastText: '#ffffff',
     },
   },
 });

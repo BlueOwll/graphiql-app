@@ -14,5 +14,5 @@
   "Valid email required.": "Valid email required.",
   "Valid password required.": "Valid password required.",
   "Min length of password is 8 symbols": "Min length of password is 8 symbols",
-  "Password should contain minimum 8 symbols, at least one letter, one digit, one special character": "Password should contain minimum 8 symbols, at least one letter, one digit, one special character"
+  "Password should contain minimum 8 symbols, at least one letter, one digit, one special character": "Password should contain minimum 8 symbols, at least one letter, one digit, one special character($%_+!-)"
 }
