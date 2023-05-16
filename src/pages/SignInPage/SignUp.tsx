@@ -11,30 +11,39 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
-import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-type SignUpProps = {
-  t: TFunction<'translation', undefined, 'translation'>;
-};
 export default function SignUp() {
   const { t } = useTranslation();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const { user, loading, error, signup } = useAuth();
   const history = useNavigate();
 
-  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const handleSignUp: SubmitHandler<FieldValues> = async (data) => {
+    console.log(data);
+    // const data = new FormData(event.currentTarget);
     try {
-      await signup(email, password);
-      history('/');
+      await signup(data.email, data.password);
+      history('/main');
     } catch (e) {
       alert(`${t('Authentification error')}: ${(e as Error).message}`);
     }
   };
+
+  // const validatePassword = (value: string) => {
+  //   value.toUpperCase().includes()
+  // }
 
   useEffect(() => {
     if (loading) return;
@@ -57,41 +66,64 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSignUp} sx={{ mt: 3 }}>
+        <Box component="form" noValidate onSubmit={handleSubmit(handleSignUp)} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            {/* <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="given-name"
-                name="firstName"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Grid> */}
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
+              <Controller
                 name="email"
-                autoComplete="email"
-                onChange={(e) => setEmail(e.target.value)}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
+                    fullWidth
+                    required
+                    id="email"
+                    label="Email Address"
+                    autoComplete="email"
+                    {...field}
+                  />
+                )}
+                rules={{
+                  required: t('Valid email required.') || true,
+                  pattern: {
+                    value: /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+                    message: t('Valid email required.') || 'Valid email required.',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
+              <Controller
                 name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                onChange={(e) => setPassword(e.target.value)}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    error={!!errors.password}
+                    helperText={errors.password?.message}
+                    fullWidth
+                    required
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                    {...field}
+                  />
+                )}
+                rules={{
+                  required: t('Valid password required.') || true,
+                  minLength: {
+                    value: 8,
+                    message: t('Min length of password is 8 symbols'),
+                  },
+                  pattern: {
+                    value: /^[\w\d$%_+!-]{8,}$/i,
+                    message:
+                      t(
+                        'Password should contain minimum 8 symbols, at least one letter, one digit, one special character',
+                      ) || 'Valid password required.',
+                  },
+                }}
               />
             </Grid>
           </Grid>
@@ -103,7 +135,9 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/signIn">Already have an account? Sign in</Link>
+              <Link color="secondary" to="/signIn">
+                Already have an account? Sign in
+              </Link>
             </Grid>
           </Grid>
         </Box>
