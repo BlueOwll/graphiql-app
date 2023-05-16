@@ -13,7 +13,15 @@
   "Auth error when checking": "Ошибка при проверке пользователя",
   "Valid email required.": "Введите корректный адрес электронной почты",
   "Valid password required.": "Введите пароль",
-  "Min length of password is 8 symbols": "Минимальная длина пароля 8 символов"
-
+  "Min length of password is 8 symbols": "Минимальная длина пароля 8 символов",
+  "Password should contain minimum 8 symbols, at least one letter, one digit, one special character": "Пароль должен содержать минимум одну латинскую букву, одну цифру и один специальный символ ($%_+!-)",
+  "email-already-exists": "Email уже существует",
+  "internal-error": "Внутренняя ошибка сервера аутентификации",
+  "invalid-email": "Некорректный email",
+  "invalid-password": "Некорректный пароль",
+  "wrong-password": "Неверный пароль",
+  "user-not-found": "Пользовательне найден",
+  "unknown error": "Неизвестная ошибка",
+  "too-many-requests": "Превышен лимит запросов"
 }
 

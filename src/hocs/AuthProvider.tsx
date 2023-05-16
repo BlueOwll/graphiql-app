@@ -25,10 +25,9 @@ type AuthProviderProps = {
 
 const signin: SigninFunction = async (email, password) => {
   try {
-    console.log(`dm ${email} ps ${password}`);
     await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
-    throw new Error(`Auth error ${(e as Error).message}`);
+    throw new Error(extractErrorMessage(e as Error));
   }
 };
 
@@ -36,7 +35,7 @@ const signup: SigninFunction = async (email, password) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
   } catch (e) {
-    throw new Error(`Auth error ${(e as Error).message}`);
+    throw new Error(extractErrorMessage(e as Error));
   }
 };
 
@@ -46,6 +45,11 @@ const signout: SignoutFunction = async () => {
   } catch {
     // already unauthorized
   }
+};
+
+const extractErrorMessage = (e: Error) => {
+  const errorMessageArr = (e as Error).message.match(/\(auth\/([\w-]+)\)/);
+  return `${errorMessageArr ? errorMessageArr[1] : ''}`;
 };
 
 export const AuthContext = createContext<AuthProviderValue>({
@@ -58,8 +62,6 @@ export const AuthContext = createContext<AuthProviderValue>({
 
 export const AuthProvider = (props: AuthProviderProps) => {
   const [user, loading, error] = useAuthState(auth);
-  // console.log('provider');
-  // console.log(user);
 
   const value = {
     user,
@@ -69,6 +71,5 @@ export const AuthProvider = (props: AuthProviderProps) => {
     signup,
     signout,
   } as AuthProviderValue;
-  console.log(value);
   return <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>;
 };
