@@ -5,7 +5,11 @@ import style from './Menu.module.scss';
 
 const Menu = (props) => {
   const url = 'https://rickandmortyapi.com/graphql';
-
+  const buttonStyle = {
+    '&:focus': {
+      outline: 'none',
+    },
+  };
   async function makeRequest(query: string, variables?: string) {
     const requestBody = variables
       ? JSON.stringify({ query, variables: JSON.parse(variables) })
@@ -22,6 +26,7 @@ const Menu = (props) => {
   return (
     <div className={style.menu}>
       <IconButton
+        sx={buttonStyle}
         onClick={() => {
           makeRequest(props.query, props.variables).then((res) =>
             props.setResponse(JSON.stringify(res)),
@@ -31,6 +36,7 @@ const Menu = (props) => {
         <PlayCircleFilledIcon />
       </IconButton>
       <IconButton
+        sx={buttonStyle}
         onClick={() => {
           props.setQuery('');
           props.setVariables('');

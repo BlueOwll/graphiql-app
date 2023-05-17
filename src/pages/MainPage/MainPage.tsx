@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
 import Variables from '../../components/Variables/Variables';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const MainPage = () => {
   interface TabPanelProps {
@@ -16,6 +17,30 @@ const MainPage = () => {
     index: number;
     value: number;
   }
+  const theme = createTheme({
+    components: {
+      MuiTabs: {
+        styleOverrides: {
+          indicator: {
+            backgroundColor: 'black',
+          },
+        },
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            fontFamily: '"system-ui", sans-serif',
+            '&.Mui-selected': {
+              color: 'black',
+            },
+            '&:focus': {
+              outline: 'none',
+            },
+          },
+        },
+      },
+    },
+  });
 
   const jsonStyle = {
     propertyStyle: { color: 'red' },
@@ -39,7 +64,7 @@ const MainPage = () => {
     id
   }
 }`);
-  const [variables, setVariables] = useState(null);
+  const [variables, setVariables] = useState('');
   const [response, setResponse] = useState(null);
 
   function TabPanel(props: TabPanelProps) {
@@ -88,21 +113,28 @@ const MainPage = () => {
         <div className={style.playgroundBlock}>
           <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column-reverse' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Playground" {...a11yProps(0)} />
-                <Tab
-                  label={
-                    <div>
-                      <Typography fontSize={'14px'} component="span">
-                        Variables{' '}
-                      </Typography>
-                      {variables && <span style={{ color: 'red', fontSize: '16px' }}>!</span>}
-                    </div>
-                  }
-                  {...a11yProps(1)}
-                />
-                <Tab label="Headers" {...a11yProps(2)} />
-              </Tabs>
+              <ThemeProvider theme={theme}>
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                  <Tab label="Playground" {...a11yProps(0)} />
+                  <Tab
+                    label={
+                      <div>
+                        <Typography
+                          fontFamily={'inherit'}
+                          fontWeight={'inherit'}
+                          fontSize={'14px'}
+                          component="span"
+                        >
+                          Variables{' '}
+                        </Typography>
+                        {variables && <span style={{ color: 'red', fontSize: '16px' }}>!</span>}
+                      </div>
+                    }
+                    {...a11yProps(1)}
+                  />
+                  <Tab label="Headers" {...a11yProps(2)} />
+                </Tabs>
+              </ThemeProvider>
             </Box>
             <TabPanel value={value} index={0} className={style.tabPanel}>
               <Playground query={query} setQuery={setQuery} />
