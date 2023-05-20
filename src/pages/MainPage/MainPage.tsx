@@ -64,7 +64,7 @@ const MainPage = () => {
     id
   }
 }`);
-  const [variables, setVariables] = useState('');
+  const [variables, setVariables] = useState([]);
   const [response, setResponse] = useState(null);
 
   function TabPanel(props: TabPanelProps) {
@@ -80,7 +80,7 @@ const MainPage = () => {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            <Typography component={'div'}>{children}</Typography>
           </Box>
         )}
       </div>
@@ -127,7 +127,11 @@ const MainPage = () => {
                         >
                           Variables{' '}
                         </Typography>
-                        {variables && <span style={{ color: 'red', fontSize: '16px' }}>!</span>}
+                        {variables.length ? (
+                          <span style={{ color: 'red', fontSize: '16px' }}>{variables.length}</span>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     }
                     {...a11yProps(1)}

@@ -10,10 +10,17 @@ const Menu = (props) => {
       outline: 'none',
     },
   };
-  async function makeRequest(query: string, variables?: string) {
-    const requestBody = variables
-      ? JSON.stringify({ query, variables: JSON.parse(variables) })
-      : JSON.stringify({ query });
+  async function makeRequest(query: string, variables) {
+    let requestBody;
+    if (variables?.length) {
+      const variablesObject = variables.reduce((obj, { key, value }) => {
+        obj[key] = value;
+        return obj;
+      }, {});
+      requestBody = JSON.stringify({ query, variables: variablesObject });
+    } else {
+      requestBody = JSON.stringify({ query });
+    }
     return fetch(url, {
       method: 'POST',
       headers: {
@@ -39,7 +46,6 @@ const Menu = (props) => {
         sx={buttonStyle}
         onClick={() => {
           props.setQuery('');
-          props.setVariables('');
         }}
       >
         <CleaningServicesIcon />

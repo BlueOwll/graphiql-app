@@ -17,7 +17,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<BaseLayout changeLanguage={changeLanguage} t={t} />}>
-        <Route index element={<WelcomePage t={t} />} />
+        <Route index element={<WelcomePage />} />
         <Route path="main" element={<MainPage />} />
         <Route path="signIn" element={<SignIn />} />
         <Route path="signUp" element={<SignUp />} />
