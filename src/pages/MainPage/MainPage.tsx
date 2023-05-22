@@ -10,8 +10,16 @@ import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
 import Variables from '../../components/Variables/Variables';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+  const { user } = useAuth();
+  const history = useNavigate();
+
+  React.useEffect(() => {
+    if (!user) history('/');
+  }, [user]);
   interface TabPanelProps {
     children?: React.ReactNode;
     index: number;

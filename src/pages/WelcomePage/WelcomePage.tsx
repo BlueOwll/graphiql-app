@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import style from './WelcomePage.module.scss';
-import { Button, CircularProgress, Paper, styled } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import 'firebase/auth';
-import { auth } from '../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
+
 const WelcomePage = () => {
   const { t } = useTranslation();
-  const [user, loading] = useAuthState(auth);
+  const { user, loading } = useAuth();
+
   return (
     <div className={style.welcomePage}>
       <div className={style.buttonContainer}>
@@ -28,28 +29,20 @@ const WelcomePage = () => {
               </Button>
             </Link>
           ) : (
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                paddingInline: '2vw',
+                paddingBlock: '10px',
+                gap: '2vw',
+              }}
+            >
               <Link to="/signIn">
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: 'grey',
-                    color: 'white',
-                    margin: '10px',
-                  }}
-                >
-                  {t('sign in')}
-                </Button>
+                <Button variant="contained">{t('sign in')}</Button>
               </Link>
               <Link to="/signUp">
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: 'grey',
-                    color: 'white',
-                    margin: '10px',
-                  }}
-                >
+                <Button variant="contained" color="secondary">
                   {t('sign up')}
                 </Button>
               </Link>

@@ -3,14 +3,14 @@ import { BaseLayout } from './pages/BaseLayout/BaseLayout';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import MainPage from './pages/MainPage/MainPage';
 import SignIn from './pages/SignInPage/SignInPage';
-import SignUp from './pages/SignInPage/SignUp';
+import SignUp from './pages/SignInPage/SignUpPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { useTranslation } from 'react-i18next';
 
 function App() {
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lang) => {
+  const changeLanguage = (lang?: string) => {
     i18n.changeLanguage(lang);
   };
 
