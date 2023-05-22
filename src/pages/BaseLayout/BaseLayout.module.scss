@@ -1,0 +1,9 @@
+.layout{
+  background-color: white;
+  min-height: 10vh;
+  width: 100%;
+}
+.base__container {
+  max-width: var(--max-width-desktop);
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
+}

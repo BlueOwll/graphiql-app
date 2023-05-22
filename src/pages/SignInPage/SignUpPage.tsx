@@ -1,18 +1,19 @@
 import Avatar from '@mui/material/Avatar';
+import style from './SignPage.module.scss';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
-import style from './SignPage.module.scss';
+import { Link, useNavigate } from 'react-router-dom';
+
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SignForm from './SignForm';
 import { useEffect, useState } from 'react';
-import { CircularProgress, Snackbar } from '@mui/material';
+import { CircularProgress, Grid, Snackbar, Typography } from '@mui/material';
 
-const SignIn = () => {
+export default function SignUp() {
   const { t } = useTranslation();
-  const { user, signin } = useAuth();
+  const { user, signup } = useAuth();
   const navigate = useNavigate();
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -25,7 +26,7 @@ const SignIn = () => {
   const handleSignUp = async (email: string, password: string) => {
     try {
       setLoading(true);
-      await signin(email, password);
+      await signup(email, password);
       navigate('/main');
     } catch (e) {
       setLoading(false);
@@ -55,7 +56,14 @@ const SignIn = () => {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <SignForm handleSign={handleSignUp} formSubmitName={t('sign in')} />
+          <SignForm handleSign={handleSignUp} formSubmitName={t('sign up')} />
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link to="/signIn">
+                <Typography color="secondary">Already have an account? Sign in</Typography>
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
       </Container>
       <Snackbar
@@ -67,6 +75,4 @@ const SignIn = () => {
       />
     </>
   );
-};
-
-export default SignIn;
+}

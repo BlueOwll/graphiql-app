@@ -8,8 +8,16 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+  const { user } = useAuth();
+  const history = useNavigate();
+
+  React.useEffect(() => {
+    if (!user) history('/');
+  }, [user]);
   interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -19,8 +27,8 @@ const MainPage = () => {
   const jsonStyle = {
     propertyStyle: { color: 'red' },
     stringStyle: { color: 'green' },
-    numberStyle: { color: 'darkorange' }
-  }
+    numberStyle: { color: 'darkorange' },
+  };
 
   const [query, setQuery] = useState(`{
   characters(page: 2, filter: {name: "rick"}) {
@@ -46,7 +54,7 @@ const MainPage = () => {
 
     return (
       <div
-        role='tabpanel'
+        role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
@@ -80,27 +88,30 @@ const MainPage = () => {
       <div className={style.playBlock}>
         <div className={style.playgroundBlock}>
           <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column-reverse' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
-              <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-                <Tab label='Playground' {...a11yProps(0)} />
-                <Tab label='Variables' {...a11yProps(1)} />
-                <Tab label='Headers' {...a11yProps(2)} />
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab label="Playground" {...a11yProps(0)} />
+                <Tab label="Variables" {...a11yProps(1)} />
+                <Tab label="Headers" {...a11yProps(2)} />
               </Tabs>
             </Box>
-            <TabPanel value={value} index={0} className={style.tabPanel} >
-              <Playground query={query} setQuery={setQuery}/>
+            <TabPanel value={value} index={0} className={style.tabPanel}>
+              <Playground query={query} setQuery={setQuery} />
             </TabPanel>
-            <TabPanel value={value} index={1} className={style.tabPanel} >
+            <TabPanel value={value} index={1} className={style.tabPanel}>
               Variables
             </TabPanel>
-            <TabPanel value={value} index={2} className={style.tabPanel} >
+            <TabPanel value={value} index={2} className={style.tabPanel}>
               Headers
             </TabPanel>
           </Box>
         </div>
         <div className={style.responseBlock}>
-          {response ? <JsonFormatter json={response} tabWith={4} jsonStyle={jsonStyle} /> :
-            <div></div>}
+          {response ? (
+            <JsonFormatter json={response} tabWith={4} jsonStyle={jsonStyle} />
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>

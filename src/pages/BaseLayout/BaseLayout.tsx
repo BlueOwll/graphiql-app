@@ -1,13 +1,19 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import './BaseLayout.css';
+import style from './BaseLayout.module.scss';
+import { TFunction } from 'i18next';
 
-const BaseLayout = (props) => {
+type BaseLayoutProps = {
+  changeLanguage: (lang?: string) => void;
+  t: TFunction<'translation', undefined, 'translation'>;
+};
+
+const BaseLayout = (props: BaseLayoutProps) => {
   return (
-    <div className="layout">
+    <div className={style.layout}>
       <Header changeLanguage={props.changeLanguage} t={props.t} />
-      <main className="base__container">
+      <main className={style.base__container}>
         <Outlet />
       </main>
       <Footer t={props.t} />

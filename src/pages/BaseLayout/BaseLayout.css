@@ -1,8 +1,0 @@
-.layout{
-  background-color: white;
-  min-height: 10vh;
-  width: 100%;
-}
-.base__container {
-  min-height: calc(100vh - var(--footer-height)- var(--header-height));
-}

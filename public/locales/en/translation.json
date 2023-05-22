@@ -8,5 +8,19 @@
   "Roman Nevdah": "Roman Nevdah",
   "welcom page part 1": "GraphQL is a powerful tool for exploring and testing GraphQL APIs. With an intuitive interface and powerful features, it`s the perfect solution for developers looking to streamline their GraphQL development workflow.",
   "welcom page part 2": "The goal of this project was to develop a powerful GraphQL playground that would help developers explore and test GraphQL APIs more efficiently. Our team of 3 developers worked tirelessly to create an app that would meet the needs of developers of all skill levels.",
-  "welcom page part 3": "This app was developed as a project for the RS School course name, which is an online course designed to teach students the skills they need to become professional developers. As part of the course, students are required to complete a series of projects that demonstrate their understanding of the concepts covered in the course."
+  "welcom page part 3": "This app was developed as a project for the RS School course name, which is an online course designed to teach students the skills they need to become professional developers. As part of the course, students are required to complete a series of projects that demonstrate their understanding of the concepts covered in the course.",
+  "Authentification error": "Authentification error!!",
+  "Auth error when checking": "Auth error when checking!!",
+  "Valid email required.": "Valid email required.",
+  "Valid password required.": "Valid password required.",
+  "Min length of password is 8 symbols": "Min length of password is 8 symbols",
+  "Password should contain minimum 8 symbols, at least one letter, one digit, one special character": "Password should contain minimum 8 symbols, at least one letter, one digit, one special character($%_+!-)",
+  "email-already-exists": "Email already exists",
+  "internal-error": "Auth server internal error",
+  "invalid-email": "Invalid email",
+  "invalid-password": "Invalid password",
+  "wrong-password": "Wrong password",
+  "user-not-found": "User not found",
+  "unknown error": "Unknown error",
+  "too-many-requests": "Limit of requests exceeded"
 }
