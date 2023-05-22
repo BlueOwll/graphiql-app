@@ -7,6 +7,7 @@ import { Language, Logout } from '@mui/icons-material';
 import useAuth from '../../hooks/useAuth';
 import { TFunction } from 'i18next';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 type HeaderProps = {
   changeLanguage: (lang?: string) => void;
@@ -14,7 +15,9 @@ type HeaderProps = {
 };
 
 const Header = (props: HeaderProps) => {
-  const [lang, setLang] = React.useState('en');
+  const [lang, setLang] = useState('en');
+  const [isSticky, setSticky] = useState(false);
+
   const { user, loading, signout } = useAuth();
 
   const handleChangeLang = (e: React.MouseEvent) => {
@@ -23,8 +26,23 @@ const Header = (props: HeaderProps) => {
     props.changeLanguage(newLang);
   };
 
+  const handleScroll = () => {
+    const windowScrollTop = window.scrollY;
+    if (windowScrollTop > 60) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={style.header}>
+    <header className={`${style.header} ${isSticky ? style.sticky : ''}`}>
       <div className={style.iconBlock}>
         <Link to="/">
           <img src={graphql} />
