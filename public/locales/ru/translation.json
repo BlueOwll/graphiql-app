@@ -22,6 +22,8 @@
   "wrong-password": "Неверный пароль",
   "user-not-found": "Пользовательне найден",
   "unknown error": "Неизвестная ошибка",
-  "too-many-requests": "Превышен лимит запросов"
+  "too-many-requests": "Превышен лимит запросов",
+  "Logout": "Выйти",
+  "ru": "to  English"
 }
 

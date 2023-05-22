@@ -1,8 +1,18 @@
+
 .welcomePage {
   background: lightgray;
-  width: 80vw;
-  height: calc(100vh - var(--footer-height) - var(--header-height));
+  width: 100%;
 
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+.welcome__wrapper{
+  background-image: url("../../assets/rnm-bg.svg");
+  background-position: bottom  right 0px;
+  background-repeat: no-repeat;
+  background-size: 40vh;
+  margin-inline: auto;
+  min-height: 100%;
+  max-width: var(--max-width-desktop);  
   display: flex;
   padding-top: 5px;
   flex-wrap: wrap;
@@ -18,8 +28,7 @@
 .firstSection {
   display: flex;
   justify-content: space-around;
-  height: calc(30%);
-  background-color: lightgray;
+  height: calc(30% - 20px);
 }
 
 .secondSection, .thirdSection {
