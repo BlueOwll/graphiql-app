@@ -10,6 +10,7 @@ import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import Docs from '../../components/Docs/Docs';
 
 const MainPage = () => {
   const { user } = useAuth();
@@ -93,6 +94,7 @@ const MainPage = () => {
                 <Tab label="Playground" {...a11yProps(0)} />
                 <Tab label="Variables" {...a11yProps(1)} />
                 <Tab label="Headers" {...a11yProps(2)} />
+                <Tab label="Docs" {...a11yProps(3)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0} className={style.tabPanel}>
@@ -103,6 +105,9 @@ const MainPage = () => {
             </TabPanel>
             <TabPanel value={value} index={2} className={style.tabPanel}>
               Headers
+            </TabPanel>
+            <TabPanel value={value} index={3} className={style.tabPanel}>
+              <Docs />
             </TabPanel>
           </Box>
         </div>
