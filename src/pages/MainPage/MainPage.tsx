@@ -10,7 +10,8 @@ import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import Docs from '../../components/Docs/Docs';
+// import Docs from '../../components/Docs/Docs';
+const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
   const { user } = useAuth();
