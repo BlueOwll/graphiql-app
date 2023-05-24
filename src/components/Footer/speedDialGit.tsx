@@ -22,8 +22,11 @@ export default function SpeedDialGit(props) {
     },
   ];
   return (
-    <Box sx={{ position: 'absolute', bottom: '4px', right: '4px' }}>
+    <Box sx={{ position: 'absolute', bottom: '10px', right: '4px' }}>
       <SpeedDial
+        FabProps={{
+          size: 'medium',
+        }}
         sx={{
           '& .MuiFab-primary': {
             backgroundColor: 'white',
@@ -40,7 +43,7 @@ export default function SpeedDialGit(props) {
           <GitHubIcon
             sx={{
               color: 'grey',
-              fontSize: '64px',
+              fontSize: '52px',
               '&:hover': {
                 opacity: 0.8,
               },
