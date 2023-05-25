@@ -14,7 +14,7 @@ const Docs = () => {
 
   const [docsViewBlock, setDocsViewBlock] = useState<JSX.Element | null>(null);
   let response;
-  const [errorResponse, setErrorResponse] = useState('Server Error:');
+  const [errorResponse, setErrorResponse] = useState('');
 
   const getSchema = () => {
     return fetch(URL, {
@@ -174,7 +174,6 @@ const Docs = () => {
   };
 
   useEffect(() => {
-    console.log('useEffect');
     getSchema()
       .then(async (res) => {
         if (res.ok) {
