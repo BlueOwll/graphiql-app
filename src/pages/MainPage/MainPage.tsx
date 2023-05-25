@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Suspense } from 'react';
 import JsonFormatter from 'react-json-formatter';
 import style from './MainPage.module.scss';
 import Menu from '../../components/Menu/Menu';
@@ -12,7 +13,8 @@ import Variables from '../../components/Variables/Variables';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import Docs from '../../components/Docs/Docs';
+import { CircularProgress } from '@mui/material';
+const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
   const { user } = useAuth();
@@ -156,7 +158,9 @@ const MainPage = () => {
               <Variables variables={variables} setVariables={setVariables} />
             </TabPanel>
             <TabPanel value={value} index={2} className={style.tabPanel}>
-              <Docs />
+              <Suspense fallback={<CircularProgress />}>
+                <Docs />
+              </Suspense>
             </TabPanel>
           </Box>
         </div>
