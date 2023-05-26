@@ -1,0 +1,42 @@
+.field {
+  color: blue;
+}
+
+.args {
+  color: red;
+}
+
+.field-block {
+  display: flex;
+}
+
+.bracket {
+  color: #1a1a1a;
+}
+
+.field-type {
+  color: goldenrod;
+  display: flex;
+}
+
+.field-type:hover {
+  cursor: pointer;
+}
+
+.args {
+  display: flex;
+}
+
+.field-description {
+  margin-bottom: 10px;
+}
+
+.docs-description {
+  margin-bottom: 10px;
+}
+
+.docs-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
