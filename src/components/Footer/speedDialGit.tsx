@@ -2,22 +2,24 @@ import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { useTranslation } from 'react-i18next';
 
-export default function SpeedDialGit(props) {
+const SpeedDialGit = () => {
+  const { t } = useTranslation();
   const actions = [
     {
       icon: <GitHubIcon color="action" sx={{ fontSize: '30px' }} />,
-      name: `${props.t('BlueOwll')}`,
+      name: `${t('BlueOwll')}`,
       href: 'https://github.com/blueowll',
     },
     {
       icon: <GitHubIcon color="action" sx={{ fontSize: '30px' }} />,
-      name: `${props.t('Roman Maklakow')}`,
+      name: `${t('Roman Maklakow')}`,
       href: 'https://github.com/mclakov',
     },
     {
       icon: <GitHubIcon color="action" sx={{ fontSize: '30px' }} />,
-      name: `${props.t('Roman Nevdah')}`,
+      name: `${t('Roman Nevdah')}`,
       href: 'https://github.com/romzezzz',
     },
   ];
@@ -70,4 +72,6 @@ export default function SpeedDialGit(props) {
       </SpeedDial>
     </Box>
   );
-}
+};
+
+export default SpeedDialGit;

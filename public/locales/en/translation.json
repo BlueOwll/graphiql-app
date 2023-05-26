@@ -28,5 +28,6 @@
   "unknown error": "Unknown error",
   "too-many-requests": "Limit of requests exceeded",
   "Logout": "Logout",
-  "en": "на русский"
+  "en": "на русский",
+  "Page not found": "Page not found"
 }

@@ -3,7 +3,7 @@ import style from './Footer.module.scss';
 import SpeedDialGit from './speedDialGit';
 import graphql from '../../assets/logo-rs.svg';
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <footer className={style.footer}>
       <div className={style.footer__wrapper}>
@@ -16,7 +16,7 @@ const Footer = (props) => {
           2023
         </Typography>
         <div className={style.gitContainer}>
-          <SpeedDialGit t={props.t} />
+          <SpeedDialGit />
         </div>
       </div>
     </footer>

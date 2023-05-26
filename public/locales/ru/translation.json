@@ -28,6 +28,7 @@
   "unknown error": "Неизвестная ошибка",
   "too-many-requests": "Превышен лимит запросов",
   "Logout": "Выйти",
-  "ru": "to  English"
+  "ru": "to  English",
+  "Page not found": "Страница не найдена"
 }
 

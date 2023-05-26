@@ -33,7 +33,6 @@ const Menu = (props: MenuProps) => {
         },
         {},
       );
-      console.log(variablesObject);
       requestBody = JSON.stringify({ query, variables: variablesObject });
     } else {
       requestBody = JSON.stringify({ query });

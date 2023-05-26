@@ -86,6 +86,7 @@ const MainPage = () => {
       <div
         role="tabpanel"
         hidden={value !== index}
+        className={style.tabPanel}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
         {...other}
@@ -108,7 +109,7 @@ const MainPage = () => {
 
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -146,13 +147,13 @@ const MainPage = () => {
                 </Tabs>
               </ThemeProvider>
             </Box>
-            <TabPanel value={value} index={0} className={style.tabPanel}>
+            <TabPanel value={value} index={0}>
               <Playground query={query} setQuery={setQuery} />
             </TabPanel>
-            <TabPanel value={value} index={1} className={style.tabPanel}>
+            <TabPanel value={value} index={1}>
               <Variables variables={variables} setVariables={setVariables} />
             </TabPanel>
-            <TabPanel value={value} index={2} className={style.tabPanel}>
+            <TabPanel value={value} index={2}>
               <Suspense fallback={<CircularProgress />}>
                 <Docs />
               </Suspense>

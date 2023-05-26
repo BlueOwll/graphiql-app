@@ -1,7 +1,10 @@
 import style from './Playground.module.scss';
 import { ChangeEvent, useState } from 'react';
-
-const Playground = (props: any) => {
+type PlaygroundProps = {
+  setQuery: (data: string) => void;
+  query: string;
+};
+const Playground = (props: PlaygroundProps) => {
   const [query, setQuery] = useState<string>(props.query);
 
   function handleQuery(e: ChangeEvent<HTMLTextAreaElement>) {
