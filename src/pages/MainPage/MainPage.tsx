@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+import { VarObject } from '../../types/Types.tsx';
 const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
@@ -59,7 +60,7 @@ const MainPage = () => {
     numberStyle: { color: 'darkorange' },
   };
 
-  const [query, setQuery] = useState(`{
+  const [query, setQuery] = useState<string>(`{
   characters(page: 2, filter: {name: "rick"}) {
     info {
       count
@@ -75,8 +76,8 @@ const MainPage = () => {
     id
   }
 }`);
-  const [variables, setVariables] = useState([]);
-  const [response, setResponse] = useState(null);
+  const [variables, setVariables] = useState<VarObject[] | []>([]);
+  const [response, setResponse] = useState<string | null>(null);
 
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -113,13 +114,7 @@ const MainPage = () => {
 
   return (
     <div className={style.mainPage}>
-      <Menu
-        query={query}
-        variables={variables}
-        setQuery={setQuery}
-        setVariables={setVariables}
-        setResponse={setResponse}
-      />
+      <Menu query={query} variables={variables} setQuery={setQuery} setResponse={setResponse} />
       <div className={style.playBlock}>
         <div className={style.playgroundBlock}>
           <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column-reverse' }}>
