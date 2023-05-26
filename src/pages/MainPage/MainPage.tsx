@@ -17,12 +17,12 @@ import { CircularProgress } from '@mui/material';
 const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const history = useNavigate();
 
   React.useEffect(() => {
-    if (!user) history('/');
-  }, [user]);
+    if (!loading && !user) history('/welcome');
+  }, [user, loading]);
   interface TabPanelProps {
     children?: React.ReactNode;
     index: number;

@@ -18,7 +18,7 @@ const WelcomePage = (props: WelcomePageProps) => {
         <div className={style.buttonContainer}>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             {loading ? (
-              <CircularProgress />
+              <div />
             ) : user ? (
               <Link to="/main">
                 <Button

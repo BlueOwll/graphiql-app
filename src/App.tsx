@@ -21,7 +21,8 @@ function App() {
     <AppProvider>
       <Routes>
         <Route path="/" element={<BaseLayout changeLanguage={changeLanguage} t={t} />}>
-          <Route index element={<WelcomePage t={t} />} />
+          <Route index element={<Navigate to="/main" replace />} />
+          <Route path="welcome" element={<WelcomePage t={t} />} />
           <Route path="main" element={<MainPage />} />
           <Route path="signIn" element={<SignIn />} />
           <Route path="signUp" element={<SignUp />} />
