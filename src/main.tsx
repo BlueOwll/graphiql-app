@@ -11,7 +11,7 @@ import { CircularProgress, CssBaseline } from '@mui/material';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Suspense fallback={<CircularProgress />}>
+    <Suspense fallback={<CircularProgress className={'center'} />}>
       <AuthProvider>
         <BrowserRouter>
           <ThemeProvider theme={themeLight}>
