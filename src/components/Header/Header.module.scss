@@ -38,6 +38,13 @@
 
 }
 
+.visible {
+  height:  var(--header-height);
+}
+.header__placeholder{
+  display: block;
+}
+ 
 @media screen and (max-width: 760px) {
   .username {
     display: none;
