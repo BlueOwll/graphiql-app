@@ -2,6 +2,7 @@
 .welcomePage {
   background: lightgray;
   width: 100%;
+
   min-height: calc(100vh - var(--footer-height) - var(--header-height));
 }
 .welcome__wrapper{
