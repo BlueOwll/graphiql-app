@@ -7,34 +7,31 @@ import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SignForm from './SignForm';
-import { useEffect, useState } from 'react';
-import { CircularProgress, Snackbar } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
+import { CircularProgress } from '@mui/material';
+import { AppContext } from '../../hocs/AppProvider';
 
 const SignIn = () => {
   const { t } = useTranslation();
   const { user, signin } = useAuth();
   const navigate = useNavigate();
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const { showErrorDialog } = useContext(AppContext);
+
   useEffect(() => {
-    if (user) navigate('/');
+    if (user) navigate('/main');
   }, [user]);
 
-  const handleSignUp = async (email: string, password: string) => {
+  const handleSignIn = async (email: string, password: string) => {
     try {
       setLoading(true);
       await signin(email, password);
       navigate('/main');
     } catch (e) {
       setLoading(false);
-      setSnackbarMessage(t((e as Error).message) || t('Unknown error') || 'Unknown error');
-      setOpenSnackbar(true);
+      showErrorDialog(t((e as Error).message) || t('Unknown error') || 'Unknown error');
     }
-  };
-  const handleSnackbarClose = () => {
-    setOpenSnackbar(false);
   };
 
   return (
@@ -55,16 +52,9 @@ const SignIn = () => {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <SignForm handleSign={handleSignUp} formSubmitName={t('sign in')} />
+          <SignForm handleSign={handleSignIn} formSubmitName={t('sign in')} />
         </Box>
       </Container>
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={2000}
-        message={snackbarMessage}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      />
     </>
   );
 };

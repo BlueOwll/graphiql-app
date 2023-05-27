@@ -2,9 +2,10 @@ import { IconButton } from '@mui/material';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import style from './Menu.module.scss';
-import ErrorDialog from '../Playground/ErrorDialog';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { VarObject } from '../../types/Types';
+import { AppContext } from '../../hocs/AppProvider';
+import { useTranslation } from 'react-i18next';
 type MenuProps = {
   query: string;
   variables: VarObject[] | [];
@@ -12,8 +13,8 @@ type MenuProps = {
   setResponse: (arg: string | null) => void;
 };
 const Menu = (props: MenuProps) => {
-  const [openErrorDialog, setOpenErrorDialog] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { t } = useTranslation();
+  const { showErrorDialog } = useContext(AppContext);
   const url = 'https://rickandmortyapi.com/graphql';
   const buttonStyle = {
     '&:focus': {
@@ -45,9 +46,8 @@ const Menu = (props: MenuProps) => {
       body: requestBody,
     })
       .then((res) => res.json())
-      .catch((error) => {
-        setErrorMessage(error.message);
-        setOpenErrorDialog(true);
+      .catch(() => {
+        showErrorDialog(t('Failed to fetch'));
       });
   }
   return (
@@ -70,12 +70,6 @@ const Menu = (props: MenuProps) => {
       >
         <CleaningServicesIcon />
       </IconButton>
-      <ErrorDialog
-        openErrorDialog={openErrorDialog}
-        setOpenErrorDialog={setOpenErrorDialog}
-        setErrorMessage={setErrorMessage}
-        errorMessage={errorMessage}
-      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from './WelcomePage.module.scss';
-import { Button, CircularProgress } from '@mui/material';
+import { Button } from '@mui/material';
 import 'firebase/auth';
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,7 @@ const WelcomePage = () => {
         <div className={style.buttonContainer}>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             {loading ? (
-              <CircularProgress />
+              <div />
             ) : user ? (
               <Link to="/main">
                 <Button

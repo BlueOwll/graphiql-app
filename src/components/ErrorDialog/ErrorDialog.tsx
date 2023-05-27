@@ -4,24 +4,23 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-type ErrorDialogProps = {
-  openErrorDialog: boolean;
-  errorMessage: string | null;
-  setOpenErrorDialog: (arg: boolean) => void;
-  setErrorMessage: (arg: null | string) => void;
-};
-export default function ErrorDialog(props: ErrorDialogProps) {
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AppContext } from '../../hocs/AppProvider';
+
+export default function ErrorDialog() {
+  const { t } = useTranslation();
+  const { openErrorDialog, errorMessage, closeErrorDialog } = useContext(AppContext);
   const handleClose = () => {
-    props.setOpenErrorDialog(false);
-    props.setErrorMessage(null);
+    closeErrorDialog();
   };
 
   return (
     <div>
-      <Dialog open={props.openErrorDialog} onClose={handleClose} aria-labelledby="dialog-title">
-        <DialogTitle id="dialog-title">{'Something went wrong'}</DialogTitle>
+      <Dialog open={openErrorDialog} onClose={handleClose} aria-labelledby="dialog-title">
+        <DialogTitle id="dialog-title">{t('Something went wrong')}</DialogTitle>
         <DialogContent>
-          <DialogContentText>{props.errorMessage}</DialogContentText>
+          <DialogContentText>{errorMessage}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

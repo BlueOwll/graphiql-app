@@ -19,7 +19,7 @@
   "Valid password required.": "Введите пароль",
   "Min length of password is 8 symbols": "Минимальная длина пароля 8 символов",
   "Password should contain minimum 8 symbols, at least one letter, one digit, one special character": "Пароль должен содержать минимум одну латинскую букву, одну цифру и один специальный символ ($%_+!-)",
-  "email-already-exists": "Email уже существует",
+  "email-already-in-use": "Email уже используется",
   "internal-error": "Внутренняя ошибка сервера аутентификации",
   "invalid-email": "Некорректный email",
   "invalid-password": "Некорректный пароль",
@@ -29,6 +29,8 @@
   "too-many-requests": "Превышен лимит запросов",
   "Logout": "Выйти",
   "ru": "to  English",
-  "Page not found": "Страница не найдена"
+  "Something went wrong": "Что-то пошло не так",
+  "Page not found": "Страница не найдена",
+  "Failed to fetch": "Не удалось получить данные"
 }
 
