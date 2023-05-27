@@ -1,10 +1,86 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import style from './Docs.module.scss';
 
+interface Response {
+  data: Data;
+};
+
+interface Data {
+  __schema: Schema;
+};
+
+interface Schema {
+  queryType: QueryType;
+  mutationType: null;
+  subscriptionType: null;
+  types: TypeElement[];
+  directives: Directive[];
+};
+
+interface Directive {
+  name: string;
+  description: string;
+  locations: string[];
+  args: Arg[];
+};
+
+interface Arg {
+  name: string;
+  description: null | string;
+  type: OfTypeClass;
+  defaultValue: null | string;
+};
+
+interface OfTypeClass {
+  kind: Kind;
+  name: null | string;
+  ofType: OfTypeClass | null;
+};
+
+enum Kind {
+  Enum = 'ENUM',
+  InputObject = 'INPUT_OBJECT',
+  List = 'LIST',
+  NonNull = 'NON_NULL',
+  Object = 'OBJECT',
+  Scalar = 'SCALAR',
+};
+
+interface QueryType {
+  name: string;
+};
+
+interface TypeElement {
+  kind: Kind;
+  name: string;
+  description: string;
+  fields: Field[] | null;
+  inputFields: Arg[] | null;
+  interfaces: any[] | null;
+  enumValues: EnumValue[] | null;
+  possibleTypes: null;
+};
+
+interface EnumValue {
+  name: string;
+  description: string;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+interface Field {
+  name: string;
+  description: null | string;
+  args: Arg[];
+  type: OfTypeClass;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
 const Docs = () => {
-  const BTN_STACK = [];
-  const TITLE_STACK = [];
+  const BTN_STACK: string[] = [];
+  const TITLE_STACK: string[] = [];
   const URL = 'https://rickandmortyapi.com/graphql';
   const SCHEMA_REQUEST = {
     query:
@@ -13,8 +89,8 @@ const Docs = () => {
   };
 
   const [docsViewBlock, setDocsViewBlock] = useState<JSX.Element | null>(null);
-  let response;
-  const [errorResponse, setErrorResponse] = useState('');
+  let response: Response;
+  const [errorResponse, setErrorResponse] = useState<string>('');
 
   const getSchema = () => {
     return fetch(URL, {
@@ -26,18 +102,18 @@ const Docs = () => {
     });
   };
 
-  const getFieldType = (obj) => {
-    const typeArr = [];
-    const getField = (obj) => {
+  const getFieldType = (obj: OfTypeClass): { name: string, typeArr: string[] } => {
+    const typeArr: string[] = [];
+    const getField = (obj: OfTypeClass): string => {
       typeArr.push(obj.kind);
       if (obj.name) return obj.name;
       const newObj = structuredClone(obj.ofType);
-      return getField(newObj);
+      return getField(newObj as OfTypeClass);
     };
     return { name: getField(obj), typeArr: typeArr };
   };
 
-  const setFields = (field) => {
+  const setFields = (field: string) => {
     if (field === 'Docs') {
       BTN_STACK.push('Docs');
       TITLE_STACK.push('Query');
@@ -83,13 +159,13 @@ const Docs = () => {
                     setFields(getFieldType(el.type).name);
                   }}
                 >
-                  {getFieldType(el.type).typeArr.reduce(
-                    function (accumulator, item) {
+                  {getFieldType(el.type).typeArr.reduce<ReactNode>(
+                    function(accumulator: ReactNode, item: string): ReactNode {
                       if (item === 'NON_NULL')
                         return <div className={style['field-type']}>{accumulator}!</div>;
                       if (item === 'LIST')
                         return <div className={style['field-type']}>[{accumulator}]</div>;
-                      return accumulator;
+                      return <div>{accumulator}</div>;
                     },
                     [getFieldType(el.type).name],
                   )}
@@ -192,4 +268,5 @@ const Docs = () => {
 
   return <div>{docsViewBlock ? <div>{docsViewBlock}</div> : <div>{errorResponse}</div>}</div>;
 };
+
 export default Docs;
