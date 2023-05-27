@@ -8,19 +8,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import SignForm from './SignForm';
-import { useEffect, useState } from 'react';
-import { CircularProgress, Grid, Snackbar, Typography } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
+import { CircularProgress, Grid, Typography } from '@mui/material';
+import { AppContext } from '../../hocs/AppProvider';
 
 export default function SignUp() {
   const { t } = useTranslation();
   const { user, signup } = useAuth();
   const navigate = useNavigate();
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const { showErrorDialog } = useContext(AppContext);
+
   useEffect(() => {
-    if (user) navigate('/');
+    if (user) navigate('/main');
   }, [user]);
 
   const handleSignUp = async (email: string, password: string) => {
@@ -30,12 +31,8 @@ export default function SignUp() {
       navigate('/main');
     } catch (e) {
       setLoading(false);
-      setSnackbarMessage(t((e as Error).message) || t('Unknown error') || 'Unknown error');
-      setOpenSnackbar(true);
+      showErrorDialog(t((e as Error).message) || t('Unknown error') || 'Unknown error');
     }
-  };
-  const handleSnackbarClose = () => {
-    setOpenSnackbar(false);
   };
 
   return (
@@ -66,13 +63,6 @@ export default function SignUp() {
           </Grid>
         </Box>
       </Container>
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={2000}
-        message={snackbarMessage}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      />
     </>
   );
 }

@@ -19,7 +19,7 @@
   "Valid password required.": "Valid password required.",
   "Min length of password is 8 symbols": "Min length of password is 8 symbols",
   "Password should contain minimum 8 symbols, at least one letter, one digit, one special character": "Password should contain minimum 8 symbols, at least one letter, one digit, one special character($%_+!-)",
-  "email-already-exists": "Email already exists",
+  "email-already-in-use": "Email already in use",
   "internal-error": "Auth server internal error",
   "invalid-email": "Invalid email",
   "invalid-password": "Invalid password",
@@ -28,5 +28,7 @@
   "unknown error": "Unknown error",
   "too-many-requests": "Limit of requests exceeded",
   "Logout": "Logout",
-  "en": "на русский"
+  "en": "на русский",
+  "Something went wrong": "Something went wrong",
+  "Page not found": "Page not found"
 }
