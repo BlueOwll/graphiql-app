@@ -12,11 +12,12 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgress, useMediaQuery } from '@mui/material';
+import { CircularProgress, Tooltip, useMediaQuery } from '@mui/material';
 import { VarObject } from '../../types/Types.tsx';
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import TerminalOutlinedIcon from '@mui/icons-material/TerminalOutlined';
 import CustomizedAccordions from '../../components/Accordion/Accordion.tsx';
+import { useTranslation } from 'react-i18next';
 const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
@@ -99,7 +100,7 @@ const MainPage = () => {
         {...other}
       >
         {value === index && (
-          <Box sx={{ display: 'flex', padding: '10px' }}>
+          <Box sx={{ display: 'flex' }}>
             <Typography component={'div'}>{children}</Typography>
           </Box>
         )}
@@ -120,6 +121,7 @@ const MainPage = () => {
     setValue(newValue);
   };
   const mediumViewport = useMediaQuery('(min-width:760px)');
+  const { t } = useTranslation();
   return (
     <div className={style.mainPage}>
       <div className={style.playBlock}>
@@ -132,8 +134,12 @@ const MainPage = () => {
                 onChange={handleChange}
                 aria-label="Vertical tabs example"
               >
-                <Tab label={<TerminalOutlinedIcon />} {...a11yProps(0)} />
-                <Tab label={<LibraryBooksOutlinedIcon />} {...a11yProps(1)} />
+                <Tooltip title={t('Show Editor')}>
+                  <Tab label={<TerminalOutlinedIcon />} {...a11yProps(0)} />
+                </Tooltip>
+                <Tooltip title={t('Show documentation explorer')}>
+                  <Tab label={<LibraryBooksOutlinedIcon />} {...a11yProps(1)} />
+                </Tooltip>
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>

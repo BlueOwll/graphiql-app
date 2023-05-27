@@ -42,16 +42,17 @@
 }
 .tabsPanel {
   width: 35px;
+  margin: 0 10px 10px 0;
 }
 @media screen and (max-width: 760px) {
   .playgroundBlockContainer {
    flex-direction: column;
   }
   .playgroundBlock {
-    width: 90vw;
+    width: 85vw;
   }
   .responseBlock {
-    width: 90vw;
+    width: 85vw;
   }
   .tabPanel {
     flex-direction: column;

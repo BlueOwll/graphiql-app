@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import style from './Menu.module.scss';
@@ -53,24 +53,28 @@ const Menu = (props: MenuProps) => {
   }
   return (
     <div className={style.menu}>
-      <IconButton
-        sx={buttonStyle}
-        onClick={() => {
-          makeRequest(props.query, props.variables).then((res) => {
-            props.setResponse(JSON.stringify(res));
-          });
-        }}
-      >
-        <PlayCircleFilledIcon />
-      </IconButton>
-      <IconButton
-        sx={buttonStyle}
-        onClick={() => {
-          props.setQuery('');
-        }}
-      >
-        <CleaningServicesIcon />
-      </IconButton>
+      <Tooltip title={t('Make request')}>
+        <IconButton
+          sx={buttonStyle}
+          onClick={() => {
+            makeRequest(props.query, props.variables).then((res) => {
+              props.setResponse(JSON.stringify(res));
+            });
+          }}
+        >
+          <PlayCircleFilledIcon />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title={t('Clear the field')}>
+        <IconButton
+          sx={buttonStyle}
+          onClick={() => {
+            props.setQuery('');
+          }}
+        >
+          <CleaningServicesIcon />
+        </IconButton>
+      </Tooltip>
     </div>
   );
 };

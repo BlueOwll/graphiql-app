@@ -2,8 +2,7 @@
 .welcomePage {
   background: lightgray;
   width: 100%;
-
-  height: calc(100vh - var(--footer-height) - var(--header-height));
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
 }
 .welcome__wrapper{
   background-image: url("../../assets/rnm-bg.svg");
