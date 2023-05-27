@@ -9,12 +9,14 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
-import Variables from '../../components/Variables/Variables';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, useMediaQuery } from '@mui/material';
 import { VarObject } from '../../types/Types.tsx';
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import TerminalOutlinedIcon from '@mui/icons-material/TerminalOutlined';
+import CustomizedAccordions from '../../components/Accordion/Accordion.tsx';
 const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
@@ -33,6 +35,9 @@ const MainPage = () => {
     components: {
       MuiTabs: {
         styleOverrides: {
+          flexContainer: {
+            justifyContent: 'space-between',
+          },
           indicator: {
             backgroundColor: 'black',
           },
@@ -41,6 +46,8 @@ const MainPage = () => {
       MuiTab: {
         styleOverrides: {
           root: {
+            minWidth: 0,
+            padding: 0,
             fontFamily: '"system-ui", sans-serif',
             '&.Mui-selected': {
               color: 'black',
@@ -78,21 +85,21 @@ const MainPage = () => {
 }`);
   const [variables, setVariables] = useState<VarObject[] | []>([]);
   const [response, setResponse] = useState<string | null>(null);
+  const [expandedAccordion, setExpandedAccordion] = useState<string | false>(false);
 
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
-
     return (
       <div
         role="tabpanel"
         hidden={value !== index}
         className={style.tabPanel}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
+        id={`vertical-tabpanel-${index}`}
+        aria-labelledby={`vertical-tab-${index}`}
         {...other}
       >
         {value === index && (
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ display: 'flex', padding: '10px' }}>
             <Typography component={'div'}>{children}</Typography>
           </Box>
         )}
@@ -112,61 +119,58 @@ const MainPage = () => {
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
+  const mediumViewport = useMediaQuery('(min-width:760px)');
   return (
     <div className={style.mainPage}>
-      <Menu query={query} variables={variables} setQuery={setQuery} setResponse={setResponse} />
       <div className={style.playBlock}>
-        <div className={style.playgroundBlock}>
-          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column-reverse' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <ThemeProvider theme={theme}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                  <Tab label="Playground" {...a11yProps(0)} />
-                  <Tab
-                    label={
-                      <div>
-                        <Typography
-                          fontFamily={'inherit'}
-                          fontWeight={'inherit'}
-                          fontSize={'14px'}
-                          component="span"
-                        >
-                          Variables{' '}
-                        </Typography>
-                        {variables.length ? (
-                          <span style={{ color: 'red', fontSize: '16px' }}>{variables.length}</span>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    }
-                    {...a11yProps(1)}
-                  />
-                  <Tab label="Docs" {...a11yProps(2)} />
-                </Tabs>
-              </ThemeProvider>
+        <Box className={style.tabPanel}>
+          <ThemeProvider theme={theme}>
+            <Box className={style.tabsPanel}>
+              <Tabs
+                orientation={mediumViewport ? 'vertical' : 'horizontal'}
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+              >
+                <Tab label={<TerminalOutlinedIcon />} {...a11yProps(0)} />
+                <Tab label={<LibraryBooksOutlinedIcon />} {...a11yProps(1)} />
+              </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Playground query={query} setQuery={setQuery} />
+              <div className={style.playgroundBlockContainer}>
+                <div className={style.playgroundBlock}>
+                  <div className={style.variablesBlock}>
+                    <Playground query={query} setQuery={setQuery} />
+                    <Menu
+                      query={query}
+                      variables={variables}
+                      setQuery={setQuery}
+                      setResponse={setResponse}
+                    />
+                  </div>
+                  <CustomizedAccordions
+                    extandedAccordion={expandedAccordion}
+                    setExpandedAccordion={setExpandedAccordion}
+                    variables={variables}
+                    setVariables={setVariables}
+                  />
+                </div>
+                <div className={style.responseBlock}>
+                  {response ? (
+                    <JsonFormatter json={response} tabWith={4} jsonStyle={jsonStyle} />
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+              </div>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <Variables variables={variables} setVariables={setVariables} />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
               <Suspense fallback={<CircularProgress />}>
                 <Docs />
               </Suspense>
             </TabPanel>
-          </Box>
-        </div>
-        <div className={style.responseBlock}>
-          {response ? (
-            <JsonFormatter json={response} tabWith={4} jsonStyle={jsonStyle} />
-          ) : (
-            <div></div>
-          )}
-        </div>
+          </ThemeProvider>
+        </Box>
       </div>
     </div>
   );

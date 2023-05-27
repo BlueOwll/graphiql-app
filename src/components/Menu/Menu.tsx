@@ -17,6 +17,7 @@ const Menu = (props: MenuProps) => {
   const { showErrorDialog } = useContext(AppContext);
   const url = 'https://rickandmortyapi.com/graphql';
   const buttonStyle = {
+    color: 'rgba(0, 0, 0, 0.87)',
     '&:focus': {
       outline: 'none',
     },
