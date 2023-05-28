@@ -100,7 +100,7 @@ const MainPage = () => {
         {...other}
       >
         {value === index && (
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Typography component={'div'}>{children}</Typography>
           </Box>
         )}
@@ -125,7 +125,7 @@ const MainPage = () => {
   return (
     <div className={style.mainPage}>
       <div className={style.playBlock}>
-        <Box className={style.tabPanel}>
+        <Box className={value === 0 ? style.tabPanel : style.tabPanelDoc}>
           <ThemeProvider theme={theme}>
             <Box className={style.tabsPanel}>
               <Tabs

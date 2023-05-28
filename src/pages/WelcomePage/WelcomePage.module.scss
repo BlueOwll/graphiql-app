@@ -1,8 +1,5 @@
-
 .welcomePage {
-  background: lightgray;
   width: 100%;
-
   min-height: calc(100vh - var(--footer-height) - var(--header-height));
 }
 .welcome__wrapper{
@@ -11,31 +8,24 @@
   background-repeat: no-repeat;
   background-size: 40vh;
   margin-inline: auto;
-  min-height: 100%;
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
   max-width: var(--max-width-desktop);  
   display: flex;
-  padding-top: 5px;
+  padding: 10px 0;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  justify-content: space-around;
-  flex-wrap: wrap;
 }
 .buttonContainer{
   width: 100%;
 }
-.firstSection {
-  display: flex;
-  justify-content: space-around;
-  height: calc(30% - 20px);
-}
 
-.secondSection, .thirdSection {
+.secondSection, .thirdSection, .firstSection {
   width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(30% - 20px);
   align-self: center;
+  margin-bottom: 50px;
 }

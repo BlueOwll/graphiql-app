@@ -20,8 +20,6 @@ const WelcomePage = () => {
                 <Button
                   variant="contained"
                   style={{
-                    backgroundColor: 'grey',
-                    color: 'white',
                     margin: '10px',
                   }}
                 >
@@ -50,10 +48,7 @@ const WelcomePage = () => {
             )}
           </div>
         </div>
-        <div className={style.firstSection}>
-          <div style={{ flexBasis: '50%' }}>{t('welcom page part 1')}</div>
-          <div style={{ flexBasis: '25%' }}></div>
-        </div>
+        <div className={style.firstSection}>{t('welcom page part 1')}</div>
         <div className={style.secondSection}>{t('welcom page part 2')}</div>
         <div className={style.thirdSection}>{t('welcom page part 3')}</div>
       </div>
