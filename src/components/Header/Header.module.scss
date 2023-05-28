@@ -32,6 +32,10 @@
   top: 0;
   //width: 100%;
   z-index: 999;
+  animation-name: example;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+
 }
 .username {
   display: block;
@@ -43,6 +47,11 @@
 }
 .header__placeholder{
   display: block;
+}
+ 
+@keyframes example {
+  0%   {top: -64px;}
+  100% {top: 0;}
 }
  
 @media screen and (max-width: 760px) {
