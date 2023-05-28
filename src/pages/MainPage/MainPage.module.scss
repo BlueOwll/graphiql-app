@@ -1,0 +1,68 @@
+.mainPage {
+  width: 100%;
+  margin-inline: auto;
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.box {
+  display: flex;
+}
+
+.playBlock {
+  width: 100%;
+  display: flex;
+}
+
+.playgroundBlock {
+  display: flex;
+  flex-direction: column;
+  width: 45vw;
+}
+.playgroundBlockContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.responseBlock {
+  width: 45vw;
+  padding: 24px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 2;
+}
+.variablesBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.tabPanel {
+  display: flex;
+  flex-direction: row;
+}
+.tabsPanel {
+  width: 35px;
+  margin: 0 10px 10px 0;
+}
+@media screen and (max-width: 760px) {
+  .playgroundBlockContainer {
+   flex-direction: column;
+  }
+  .playgroundBlock {
+    width: 85vw;
+  }
+  .responseBlock {
+    width: 85vw;
+  }
+  .tabPanel {
+    flex-direction: column;
+    padding: 0;
+ }
+  .tabsPanel {
+    width: 70px;
+    padding-top: 0;
+ }
+}

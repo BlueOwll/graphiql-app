@@ -1,0 +1,12 @@
+.signIn {
+  width: 80vw;
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-top: 10vh;
+}

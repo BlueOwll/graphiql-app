@@ -1,0 +1,60 @@
+.header {
+  width: 100%;
+  background: lightgray;
+  outline: 1px solid darkgray;
+}
+.header__wrapper {
+  max-width: var(--max-width-desktop);
+  margin-inline: auto;
+
+  padding-inline: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height:  var(--header-height);
+}
+
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.iconBlock, .btnBlock {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  animation-name: example;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+
+}
+.username {
+  display: block;
+
+}
+
+.visible {
+  height:  var(--header-height);
+}
+.header__placeholder{
+  display: block;
+}
+ 
+@keyframes example {
+  0%   {top: -64px;}
+  100% {top: 0;}
+}
+ 
+@media screen and (max-width: 760px) {
+  .username {
+    display: none;
+
+  }
+}
