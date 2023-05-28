@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SignForm from './SignForm';
 import { useContext, useEffect, useState } from 'react';
-import { CircularProgress, Snackbar } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import { AppContext } from '../../hocs/AppProvider';
 
 const SignIn = () => {

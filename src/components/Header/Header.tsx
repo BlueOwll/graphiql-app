@@ -2,33 +2,27 @@ import style from './Header.module.scss';
 import graphql from '../../assets/graphql.svg';
 import rnm from '../../assets/rnm.svg';
 import { Badge, CircularProgress, IconButton, Tooltip, Typography } from '@mui/material';
-import * as React from 'react';
 import { Language, Logout } from '@mui/icons-material';
 import useAuth from '../../hooks/useAuth';
-import { TFunction } from 'i18next';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-type HeaderProps = {
-  changeLanguage: (lang?: string) => void;
-  t: TFunction<'translation', undefined, 'translation'>;
-};
-
-const Header = (props: HeaderProps) => {
+const Header = () => {
+  const { t, i18n } = useTranslation();
   const [lang, setLang] = useState('en');
   const [isSticky, setSticky] = useState(false);
 
   const { user, loading, signout } = useAuth();
 
-  const handleChangeLang = (e: React.MouseEvent) => {
+  const handleChangeLang = () => {
     const newLang = lang === 'ru' ? 'en' : 'ru';
     setLang(newLang);
-    props.changeLanguage(newLang);
+    i18n.changeLanguage(newLang);
   };
 
   const handleScroll = () => {
     const windowScrollTop = window.scrollY;
-    console.log(windowScrollTop);
     if (windowScrollTop > 64) {
       setSticky(true);
     } else {
@@ -68,7 +62,7 @@ const Header = (props: HeaderProps) => {
               <CircularProgress className="center" />
             ) : user ? (
               <>
-                <Tooltip title={props.t('Logout')}>
+                <Tooltip title={t('Logout')}>
                   <IconButton
                     color="inherit"
                     sx={{
@@ -85,7 +79,7 @@ const Header = (props: HeaderProps) => {
             ) : (
               <> </>
             )}
-            <Tooltip title={props.t(lang)}>
+            <Tooltip title={t(lang)}>
               <IconButton
                 sx={{
                   '&:focus': {

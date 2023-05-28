@@ -30,6 +30,12 @@
   "Logout": "Выйти",
   "ru": "to  English",
   "Something went wrong": "Что-то пошло не так",
-  "Page not found": "Страница не найдена"
+  "Page not found": "Страница не найдена",
+  "Failed to fetch": "Не удалось получить данные",
+  "Variables": "Переменные",
+  "Make request": "Сделать запрос",
+  "Clear the field": "Очистить поле запроса",
+  "Show Editor": "Открыть редактор",
+  "Show documentation explorer": "Открыть документацию"
 }
 

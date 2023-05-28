@@ -14,7 +14,7 @@ type AppProviderProps = {
 export const AppContext = createContext<AppContextValue>({
   openErrorDialog: false,
   errorMessage: null,
-  showErrorDialog: (message: string) => {},
+  showErrorDialog: () => {},
   closeErrorDialog: () => {},
 });
 

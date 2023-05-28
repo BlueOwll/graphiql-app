@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,7 +14,12 @@ export default function ErrorDialog() {
   const handleClose = () => {
     closeErrorDialog();
   };
-
+  const buttonStyle = {
+    color: 'rgba(0, 0, 0, 0.87)',
+    '&:focus': {
+      outline: 'none',
+    },
+  };
   return (
     <div>
       <Dialog open={openErrorDialog} onClose={handleClose} aria-labelledby="dialog-title">
@@ -24,7 +28,7 @@ export default function ErrorDialog() {
           <DialogContentText>{errorMessage}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button sx={buttonStyle} autoFocus onClick={handleClose}>
             Ok
           </Button>
         </DialogActions>

@@ -1,15 +1,11 @@
 .mainPage {
-  width: 80vw;
+  width: 100%;
   margin-inline: auto;
-  min-height: 100%;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
   align-items: flex-start;
   flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
 .box {
@@ -17,21 +13,53 @@
 }
 
 .playBlock {
+  width: 100%;
   display: flex;
 }
 
 .playgroundBlock {
-  width: 40vw;
-  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  width: 45vw;
 }
-
+.playgroundBlockContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
 .responseBlock {
-  width: 37vw;
-  height: 65vh;
+  width: 45vw;
   padding: 24px;
-  overflow-y: scroll;
 }
-
+.variablesBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
 .tabPanel {
-  height: 68vh;
+  display: flex;
+  flex-direction: row;
+}
+.tabsPanel {
+  width: 35px;
+  margin: 0 10px 10px 0;
+}
+@media screen and (max-width: 760px) {
+  .playgroundBlockContainer {
+   flex-direction: column;
+  }
+  .playgroundBlock {
+    width: 85vw;
+  }
+  .responseBlock {
+    width: 85vw;
+  }
+  .tabPanel {
+    flex-direction: column;
+    padding: 0;
+ }
+  .tabsPanel {
+    width: 70px;
+    padding-top: 0;
+ }
 }

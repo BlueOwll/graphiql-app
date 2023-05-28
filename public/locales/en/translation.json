@@ -30,5 +30,11 @@
   "Logout": "Logout",
   "en": "на русский",
   "Something went wrong": "Something went wrong",
-  "Page not found": "Page not found"
+  "Page not found": "Page not found",
+  "Failed to fetch": "Failed to fetch data",
+  "Variables": "Variables",
+  "Make request": "Make request",
+  "Clear the field": "Clear the field",
+  "Show Editor": "Show Editor",
+  "Show documentation explorer": "Show documentation explorer"
 }

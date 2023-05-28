@@ -14,15 +14,11 @@ import CheckIcon from '@mui/icons-material/Check';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { VarObject } from '../../types/Types';
 
-export type MyObject = {
-  key: string;
-  value: string;
-  [key: string]: string | undefined;
-};
 type VariablesProps = {
-  setVariables: (data: MyObject[]) => void;
-  variables: MyObject[] | [];
+  setVariables: (data: VarObject[]) => void;
+  variables: VarObject[] | [];
 };
 const Variables = (props: VariablesProps) => {
   const [data, setData] = useState(props.variables);
@@ -31,7 +27,7 @@ const Variables = (props: VariablesProps) => {
   const [invalidFields, setInvalidFields] = useState<string[]>([]);
   const { t } = useTranslation();
   const handleInputChange = (index: number, field: string, value: string) => {
-    const newData: MyObject[] = [...data];
+    const newData: VarObject[] = [...data];
     newData[index][field] = value;
     setData(newData);
     if (invalidFields.includes(`${index}-${field}`)) {

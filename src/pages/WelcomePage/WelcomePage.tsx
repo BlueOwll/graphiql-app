@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
 import style from './WelcomePage.module.scss';
-import { Button, CircularProgress } from '@mui/material';
+import { Button } from '@mui/material';
 import 'firebase/auth';
 import useAuth from '../../hooks/useAuth';
-import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
-type WelcomePageProps = {
-  t: TFunction<'translation', undefined, 'translation'>;
-};
-
-const WelcomePage = (props: WelcomePageProps) => {
+const WelcomePage = () => {
   const { user, loading } = useAuth();
-
+  const { t } = useTranslation();
   return (
     <section className={style.welcomePage}>
       <div className={style.welcome__wrapper}>
@@ -29,7 +25,7 @@ const WelcomePage = (props: WelcomePageProps) => {
                     margin: '10px',
                   }}
                 >
-                  {props.t('go to main page')}
+                  {t('go to main page')}
                 </Button>
               </Link>
             ) : (
@@ -43,11 +39,11 @@ const WelcomePage = (props: WelcomePageProps) => {
                 }}
               >
                 <Link to="/signIn">
-                  <Button variant="contained">{props.t('sign in')}</Button>
+                  <Button variant="contained">{t('sign in')}</Button>
                 </Link>
                 <Link to="/signUp">
                   <Button variant="contained" color="secondary">
-                    {props.t('sign up')}
+                    {t('sign up')}
                   </Button>
                 </Link>
               </div>
@@ -55,11 +51,11 @@ const WelcomePage = (props: WelcomePageProps) => {
           </div>
         </div>
         <div className={style.firstSection}>
-          <div style={{ flexBasis: '50%' }}>{props.t('welcom page part 1')}</div>
+          <div style={{ flexBasis: '50%' }}>{t('welcom page part 1')}</div>
           <div style={{ flexBasis: '25%' }}></div>
         </div>
-        <div className={style.secondSection}>{props.t('welcom page part 2')}</div>
-        <div className={style.thirdSection}>{props.t('welcom page part 3')}</div>
+        <div className={style.secondSection}>{t('welcom page part 2')}</div>
+        <div className={style.thirdSection}>{t('welcom page part 3')}</div>
       </div>
     </section>
   );

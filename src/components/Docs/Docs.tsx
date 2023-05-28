@@ -4,11 +4,11 @@ import style from './Docs.module.scss';
 
 interface Response {
   data: Data;
-};
+}
 
 interface Data {
   __schema: Schema;
-};
+}
 
 interface Schema {
   queryType: QueryType;
@@ -16,27 +16,27 @@ interface Schema {
   subscriptionType: null;
   types: TypeElement[];
   directives: Directive[];
-};
+}
 
 interface Directive {
   name: string;
   description: string;
   locations: string[];
   args: Arg[];
-};
+}
 
 interface Arg {
   name: string;
   description: null | string;
   type: OfTypeClass;
   defaultValue: null | string;
-};
+}
 
 interface OfTypeClass {
   kind: Kind;
   name: null | string;
   ofType: OfTypeClass | null;
-};
+}
 
 enum Kind {
   Enum = 'ENUM',
@@ -45,11 +45,11 @@ enum Kind {
   NonNull = 'NON_NULL',
   Object = 'OBJECT',
   Scalar = 'SCALAR',
-};
+}
 
 interface QueryType {
   name: string;
-};
+}
 
 interface TypeElement {
   kind: Kind;
@@ -57,17 +57,17 @@ interface TypeElement {
   description: string;
   fields: Field[] | null;
   inputFields: Arg[] | null;
-  interfaces: any[] | null;
+  interfaces: [] | null;
   enumValues: EnumValue[] | null;
   possibleTypes: null;
-};
+}
 
 interface EnumValue {
   name: string;
   description: string;
   isDeprecated: boolean;
   deprecationReason: null;
-};
+}
 
 interface Field {
   name: string;
@@ -76,7 +76,7 @@ interface Field {
   type: OfTypeClass;
   isDeprecated: boolean;
   deprecationReason: null;
-};
+}
 
 const Docs = () => {
   const BTN_STACK: string[] = [];
@@ -102,7 +102,7 @@ const Docs = () => {
     });
   };
 
-  const getFieldType = (obj: OfTypeClass): { name: string, typeArr: string[] } => {
+  const getFieldType = (obj: OfTypeClass): { name: string; typeArr: string[] } => {
     const typeArr: string[] = [];
     const getField = (obj: OfTypeClass): string => {
       typeArr.push(obj.kind);
@@ -160,7 +160,7 @@ const Docs = () => {
                   }}
                 >
                   {getFieldType(el.type).typeArr.reduce<ReactNode>(
-                    function(accumulator: ReactNode, item: string): ReactNode {
+                    function (accumulator: ReactNode, item: string): ReactNode {
                       if (item === 'NON_NULL')
                         return <div className={style['field-type']}>{accumulator}!</div>;
                       if (item === 'LIST')
