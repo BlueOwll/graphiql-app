@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from './WelcomePage.module.scss';
 import { Button } from '@mui/material';
 import 'firebase/auth';

@@ -10,8 +10,6 @@ import Box from '@mui/material/Box';
 import Playground from '../../components/Playground/Playground';
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Tooltip, useMediaQuery } from '@mui/material';
 import { VarObject } from '../../types/Types.tsx';
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
