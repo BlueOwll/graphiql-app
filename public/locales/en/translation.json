@@ -29,6 +29,7 @@
   "too-many-requests": "Limit of requests exceeded",
   "Logout": "Logout",
   "en": "на русский",
+  "ru": "ru",
   "Something went wrong": "Something went wrong",
   "Page not found": "Page not found",
   "Failed to fetch": "Failed to fetch data",

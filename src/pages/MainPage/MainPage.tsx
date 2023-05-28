@@ -21,12 +21,6 @@ import { useTranslation } from 'react-i18next';
 const Docs = React.lazy(() => import('../../components/Docs/Docs.tsx'));
 
 const MainPage = () => {
-  const { user, loading } = useAuth();
-  const history = useNavigate();
-
-  React.useEffect(() => {
-    if (!loading && !user) history('/welcome');
-  }, [user, loading]);
   interface TabPanelProps {
     children?: React.ReactNode;
     index: number;

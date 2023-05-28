@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './WelcomePage.module.scss';
 import { Button } from '@mui/material';
 import 'firebase/auth';
@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 const WelcomePage = () => {
   const { user, loading } = useAuth();
   const { t } = useTranslation();
+
   return (
     <section className={style.welcomePage}>
       <div className={style.welcome__wrapper}>
