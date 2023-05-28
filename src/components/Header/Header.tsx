@@ -54,7 +54,7 @@ const Header = () => {
             <Typography
               className={style.username}
               color="primary"
-              sx={{ fontSize: '1.5rem', fontWeight: 600, marginInline: '2rem' }}
+              sx={{ fontSize: '1.2rem', fontWeight: 500, marginInline: '2rem' }}
             >
               {user ? `${user.email}` : ''}
             </Typography>
