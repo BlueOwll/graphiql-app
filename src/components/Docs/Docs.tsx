@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import style from './Docs.module.scss';
+import { Button } from '@mui/material';
 
 interface Response {
   data: Data;
@@ -208,7 +209,7 @@ const Docs = () => {
         });
         setDocsViewBlock(
           <div>
-            <button
+            <Button
               onClick={() => {
                 BTN_STACK.pop();
                 TITLE_STACK.pop();
@@ -216,8 +217,8 @@ const Docs = () => {
               }}
               key={nanoid()}
             >
-              {btn}
-            </button>
+              {'< '} {btn}
+            </Button>
             <div className={style['docs-title']} key={nanoid()}>
               {title}
             </div>
