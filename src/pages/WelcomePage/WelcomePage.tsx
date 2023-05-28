@@ -50,7 +50,6 @@ const WelcomePage = () => {
         </div>
         <div className={style.firstSection}>{t('welcom page part 1')}</div>
         <div className={style.secondSection}>{t('welcom page part 2')}</div>
-        <div className={style.secondSection}>{t('welcom page part 4')}</div>
         <div className={style.thirdSection}>{t('welcom page part 3')}</div>
       </div>
     </section>
