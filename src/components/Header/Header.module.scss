@@ -25,12 +25,10 @@
   display: flex;
   align-items: center;
   justify-content: end;
-  //width: 150px;
 }
 .sticky {
   position: fixed;
   top: 0;
-  //width: 100%;
   z-index: 999;
   animation-name: example;
   animation-duration: 0.5s;
