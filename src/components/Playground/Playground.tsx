@@ -13,7 +13,6 @@ const Playground = (props: PlaygroundProps) => {
 
   return (
     <textarea
-      placeholder="Write yur request here..."
       className={style.playground}
       value={query}
       onChange={handleQuery}
